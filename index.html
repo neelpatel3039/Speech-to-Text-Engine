@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>SCR System</title>
+	<style type="text/css">
+		.container
+		{
+			position: block; /* or absolute */
+			z-index:3;
+  			top: 40%;
+  			left: 5%;
+  			background-color: #bcc7d8;
+			opacity: 0.8;
+    		filter: alpha(opacity=90);
+    		margin-bottom: 4px;
+		}
+		.playButton
+		{
+			position: inline;
+			height: 70px;
+			width: 70px;
+		}
+		.playButton:hover
+		{
+			box-shadow:0px 7px 1px 0px rgba(0, 0, 0, 0.0), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		}
+		.submitButton
+		{
+			position: inline;
+			/*height: 50px;
+			width: 200px;
+			border: none;*/
+			font-size: 18px;
+			margin-bottom: 15px;
+			border-radius: 10px 10px 10px 10px;
+		}
+		.submitButton 
+		{
+		    position: relative;
+		    background-color: #bcc7d8;
+		    border: none;
+		    font-size: 28px;
+		    color: #FFFFFF;
+		    padding: 10px;
+		    width: 230px;
+		    text-align: center;
+		    -webkit-transition-duration: 0.4s; /* Safari */
+		    transition-duration: 0.4s;
+		    text-decoration: none;
+		    overflow: hidden;
+		    cursor: pointer;
+		}
+		.submitButton:hover
+		{
+			box-shadow:0px 7px 1px 0px rgba(0, 0, 0, 0.0), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		}
+		.submitButton:after {
+		    content: "";
+		    background: ;
+		    display: block;
+		    position: absolute;
+		    padding-top: 300%;
+		    padding-left: 350%;
+		    margin-left: -20px!important;
+		    margin-top: -120%;
+		    opacity: 0;
+		    transition: all 0.8s
+		}
+		.submitButton:active:after {
+		    padding: 0;
+		    margin: 0;
+		    opacity: 1;
+		    transition: 0s;
+		}
+		.recogText
+		{
+			position: block; /* or absolute */
+  			top: 70%;
+  			left: 5%;
+  			right: 5%;
+  			height: 100%;
+  			width: 99.3%;
+  			font-size: 25px;
+		}
+		body 
+		{
+			background:#333 url(https://img00.deviantart.net/59b0/i/2013/278/b/4/echoes_of_the_void_2_by_tylercreatesworlds-d6pecwr.jpg) repeat;   
+			/*https://static.tumblr.com/maopbtg/a5emgtoju/inflicted.png*/
+		}
+		#paper 
+		{
+			color:#FFF;
+			font-size:20px;
+			z-index: 2;
+		}
+		#margin 
+		{
+			margin-left:12px;
+			margin-bottom:20px;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			-o-user-select: none;
+			user-select: none; 
+		}
+		#text 
+		{
+			width:500px;
+			overflow:hidden;
+			background-color:#FFF;
+			color:#222;
+			font-family:Courier, monospace;
+			font-weight:normal;
+			font-size:24px;
+			resize:none;
+			line-height:40px;
+			padding-left:100px;
+			padding-right:100px;
+			padding-top:45px;
+			padding-bottom:34px;
+			background-image:url(https://static.tumblr.com/maopbtg/E9Bmgtoht/lines.png), url(https://static.tumblr.com/maopbtg/nBUmgtogx/paper.png);
+			background-repeat:repeat-y, repeat;
+			-webkit-border-radius:12px;
+			border-radius:12px;
+			-webkit-box-shadow: 0px 2px 14px #000;
+			box-shadow: 0px 2px 14px #000;
+			border-top:1px solid #FFF;
+			border-bottom:1px solid #FFF;
+		}
+		#title 
+		{
+			background-color:transparent;
+			border-bottom:3px solid #FFF;
+			color:#FFF;
+			font-size:20px;
+			font-family:Courier, monospace;
+			height:28px;
+			font-weight:bold;
+			width:220px;
+		}
+		#button 
+		{
+			cursor:pointer;
+			margin-top:20px;
+			float:right;
+			height:40px;
+			padding-left:24px;
+			padding-right:24px;
+			font-family:Arial, Helvetica, sans-serif;
+			font-weight:bold;
+			font-size:20px;
+			color:#FFF;
+			text-shadow: 0px -1px 0px #000000;
+			-webkit-border-radius:8px;
+			border-radius:8px;
+			border-top:1px solid #FFF;
+			-webkit-box-shadow: 0px 2px 14px #000;
+			box-shadow: 0px 2px 14px #000;
+			background-color: #62add6;
+			background-image:url(https://static.tumblr.com/maopbtg/ZHLmgtok7/button.png);
+			background-repeat:repeat-x;
+		}
+		#button:active 
+		{
+			zoom: 1;
+			filter: alpha(opacity=80);
+			opacity: 0.8;
+		}
+		#button:focus 
+		{
+			zoom: 1;
+			filter: alpha(opacity=80);
+			opacity: 0.8;
+		}
+		#wrapper 
+		{
+			width:700px;
+			height:auto;
+			margin-left:auto;
+			margin-right:auto;
+			margin-top:24px;
+			margin-bottom:100px;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<!--<img style="position: fixed; top: 0; border: 0;" src="banner.png">-->
+	</header>
+	<center>
+		<div class="container">
+			<br>
+			<img id="playButton" class="playButton" src="mic.png" onclick="speechToTextConversion();">
+			<br>
+			<span><button id="submitButton" style="font-size: 15px; width: 100%" class="submitButton">C L I C K&nbsp;&nbsp;&nbsp;O N&nbsp;&nbsp;&nbsp;T H E&nbsp;&nbsp;&nbsp;M I C&nbsp;&nbsp;&nbsp;T O&nbsp;&nbsp;&nbsp;S T A R T&nbsp;&nbsp;&nbsp;R E C O R D I N G</button><br></span>
+		</div>
+
+		<div id="wrapper">
+			<form id="paper">
+				<textarea placeholder="Whatever you speak will appear here." id="text" name="text" rows="4" style="overflow: hidden; word-wrap: break-word; resize: none; height: 160px; "></textarea>  
+			</form>
+		</div>
+			
+	<footer>
+		<img style="position: fixed; bottom: 0.5%;right: 0.5%; border: 0;" src="">
+	</footer>
+		<div class="container">
+			<br>
+			<img class="playButton" style="margin-top: 5px;height: 40px; width: 50px;" src="eq.png">
+			<br><br>
+			<span><button id="submitButton" style="font-size: 15px; width: 100%" class="submitButton">BY NEEL&nbsp;&nbsp;&nbsp;PATEL&nbsp;&nbsp;</button><br></span>
+		</div>
+	</center>
+	<script type="text/javascript">
+		var i=0;
+		//__________________________Speech Recognistion Section__________________________________________
+
+			function speechToTextConversion()
+			{			
+				var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
+
+				var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
+
+				var recognition = new SpeechRecognition();
+			
+				recognition.continuous = true;
+				recognition.lang = 'en-IN';
+				recognition.interimResults = true;
+				recognition.maxAlternatives = 1;
+
+				var diagnostic = document.getElementById('text');
+
+				//____________________________________EVENTS_______________________________________________
+                var i=0;
+                var j=0;
+				document.getElementById("playButton").onclick = function() {
+				    if(i==0)
+				    {
+				        document.getElementById("playButton").src="record-button-thumb.png";
+				        recognition.start();
+				        i=1;
+				    }
+				    else
+				    {
+				         document.getElementById("playButton").src="mic.png";
+				         recognition.stop();
+				         i=0;
+				    }
+				}
+				recognition.onresult = function(event) {
+				  var last = event.results.length - 1;
+				  var convertedText = event.results[last][0].transcript;
+				  diagnostic.value = convertedText;
+				  console.log('Confidence: ' + event.results[0][0].confidence);
+				}
+				
+				recognition.onnomatch = function(event) {
+				  diagnostic.value = 'I didnt recognise that.';
+				}
+				recognition.onerror = function(event) {
+				  diagnostic.value = 'Error occurred in recognition: ' + event.error;
+				}
+			};
+
+	</script>
+</body>
+</html>
